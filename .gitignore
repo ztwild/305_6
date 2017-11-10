@@ -1,1 +1,4 @@
 mem
+out
+*.obj
+*.exe
