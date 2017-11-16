@@ -2,3 +2,16 @@ Zach Wild
 Section F
 summary: 
 
+'First in First out' is a simple algorithm cause it cycles through the page frames if there is a 
+page fault.  But can lead to a lot of page faults because one memory access could be used several 
+times and takes longer for it to replace it.
+
+'least recently used' is a little quicker because it swaps a page frame if it hasn't been accessed 
+for awhile, this is faster because a page frame that's used a lot, we wouldn't want to swap it out 
+for another if been used frequently.
+
+
+The 'optimal' has the least page faults than 'first in fist out' and 'least recently used', 
+but it is the slowest one of the three because it has to check the memory access for when the page 
+will be needed again, which could end up checking the entire memory access if its never 
+used again, making it very slow.
