@@ -228,8 +228,8 @@ int main (){
   	initialize_page_frames(PageFrames,NUM_FRAMES);
   	PageFaultTotals.page_faults_OPT_rand += handle_page_accesses(PageFrames,NUM_FRAMES,PageAccesses,NUM_ACCESSES,PRAlgo_OPT);
     /** CUST **/
-	  // initialize_page_frames(PageFrames,NUM_FRAMES);
-	  // PageFaultTotals.page_faults_CUST_rand += handle_page_accesses(PageFrames, NUM_FRAMES,PageAccesses,NUM_ACCESSES,PRAlgo_CUST);
+	  initialize_page_frames(PageFrames,NUM_FRAMES);
+	  PageFaultTotals.page_faults_CUST_rand += handle_page_accesses(PageFrames, NUM_FRAMES,PageAccesses,NUM_ACCESSES,PRAlgo_CUST);
   
   
   	/* Memory access analysis with sequential access */
@@ -245,8 +245,8 @@ int main (){
   	initialize_page_frames(PageFrames,NUM_FRAMES);
   	PageFaultTotals.page_faults_OPT_seq += handle_page_accesses(PageFrames,NUM_FRAMES,PageAccesses,NUM_ACCESSES,PRAlgo_OPT);
     /** CUST **/
-	  // initialize_page_frames(PageFrames,NUM_FRAMES);
-	  // PageFaultTotals.page_faults_CUST_seq += handle_page_accesses(PageFrames, NUM_FRAMES,PageAccesses,NUM_ACCESSES,PRAlgo_CUST);
+	  initialize_page_frames(PageFrames,NUM_FRAMES);
+	  PageFaultTotals.page_faults_CUST_seq += handle_page_accesses(PageFrames, NUM_FRAMES,PageAccesses,NUM_ACCESSES,PRAlgo_CUST);
     
 
   	/* Memory access analysis with LR workload access */
@@ -262,8 +262,8 @@ int main (){
   	initialize_page_frames(PageFrames,NUM_FRAMES);
   	PageFaultTotals.page_faults_OPT_lr += handle_page_accesses(PageFrames,NUM_FRAMES,PageAccesses,NUM_ACCESSES,PRAlgo_OPT);
     /** CUST **/
-	  // initialize_page_frames(PageFrames,NUM_FRAMES);
-	  // PageFaultTotals.page_faults_CUST_lr += handle_page_accesses(PageFrames, NUM_FRAMES,PageAccesses,NUM_ACCESSES,PRAlgo_CUST);
+	  initialize_page_frames(PageFrames,NUM_FRAMES);
+	  PageFaultTotals.page_faults_CUST_lr += handle_page_accesses(PageFrames, NUM_FRAMES,PageAccesses,NUM_ACCESSES,PRAlgo_CUST);
 		
 	seed++;		// Increment seed to generate new sequence of accesses next iteration
   }
@@ -271,32 +271,34 @@ int main (){
   int avrgRAN, avrgSEQ, avrLR;
 	
 	avrgRAN = PageFaultTotals.page_faults_FIFO_rand / NUM_RUNS;
-	avrgSEQ = PageFaultTotals.page_faults_FIFO_seq / NUM_RUNS;
-	avrLR = PageFaultTotals.page_faults_FIFO_lr / NUM_RUNS;
-  printf("The average number of page faults for FIFO with Random Access is %d.\n", avrgRAN);
-  printf("The average number of page faults for FIFO with Sequential Access is %d.\n", avrgSEQ);
-  printf("The average number of page faults for FIFO with LR Workload Access is %d.\n", avrLR);
-  
-  avrgRAN = PageFaultTotals.page_faults_LRU_rand / NUM_RUNS;
-	avrgSEQ = PageFaultTotals.page_faults_LRU_seq / NUM_RUNS;
-	avrLR = PageFaultTotals.page_faults_LRU_lr / NUM_RUNS;
-  printf("The average number of page faults for LRU with Random Access is %d.\n", avrgRAN);
-  printf("The average number of page faults for LRU with Sequential Access is %d.\n", avrgSEQ);
-  printf("The average number of page faults for LRU with LR Workload Access is %d.\n", avrLR);
-  
-  avrgRAN = PageFaultTotals.page_faults_OPT_rand / NUM_RUNS;
-	avrgSEQ = PageFaultTotals.page_faults_OPT_seq / NUM_RUNS;
-	avrLR = PageFaultTotals.page_faults_OPT_lr / NUM_RUNS;
+	printf("The average number of page faults for FIFO with Random Access is %d.\n", avrgRAN);
+	avrgRAN = PageFaultTotals.page_faults_LRU_rand / NUM_RUNS;
+	printf("The average number of page faults for LRU with Random Access is %d.\n", avrgRAN);
+	avrgRAN = PageFaultTotals.page_faults_OPT_rand / NUM_RUNS;
   printf("The average number of page faults for OPT with Random Access is %d.\n", avrgRAN);
+  avrgRAN = PageFaultTotals.page_faults_CUST_rand / NUM_RUNS;
+  printf("The average number of page faults for CUST with Random Access is %d.\n", avrgRAN);
+	
+	
+	
+	avrgSEQ = PageFaultTotals.page_faults_FIFO_seq / NUM_RUNS;
+  printf("The average number of page faults for FIFO with Sequential Access is %d.\n", avrgSEQ);
+	avrgSEQ = PageFaultTotals.page_faults_LRU_seq / NUM_RUNS;
+  printf("The average number of page faults for LRU with Sequential Access is %d.\n", avrgSEQ);
+	avrgSEQ = PageFaultTotals.page_faults_OPT_seq / NUM_RUNS;
   printf("The average number of page faults for OPT with Sequential Access is %d.\n", avrgSEQ);
+	avrgSEQ = PageFaultTotals.page_faults_CUST_seq / NUM_RUNS;
+  printf("The average number of page faults for CUST with Sequential Access is %d.\n", avrgSEQ);
+  
+  
+  avrLR = PageFaultTotals.page_faults_FIFO_lr / NUM_RUNS;
+  printf("The average number of page faults for FIFO with LR Workload Access is %d.\n", avrLR);
+  avrLR = PageFaultTotals.page_faults_LRU_lr / NUM_RUNS;
+  printf("The average number of page faults for LRU with LR Workload Access is %d.\n", avrLR);
+  avrLR = PageFaultTotals.page_faults_OPT_lr / NUM_RUNS;
   printf("The average number of page faults for OPT with LR Workload Access is %d.\n", avrLR);
- 
-  // avrgRAN = PageFaultTotals.page_faults_CUST_rand / NUM_RUNS;
-	// avrgSEQ = PageFaultTotals.page_faults_CUST_seq / NUM_RUNS;
-	// avrLR = PageFaultTotals.page_faults_CUST_lr / NUM_RUNS;
-  // printf("The average number of page faults for CUST with Random Access is %d.\n", avrgRAN);
-  // printf("The average number of page faults for CUST with Sequential Access is %d.\n", avrgSEQ);
-  // printf("The average number of page faults for CUST with LR Workload Access is %d.\n", avrLR);
+  avrLR = PageFaultTotals.page_faults_CUST_lr / NUM_RUNS;
+  printf("The average number of page faults for CUST with LR Workload Access is %d.\n", avrLR);
 
   return 0;
 }
@@ -388,4 +390,20 @@ int PRAlgo_OPT(const PageFrame *PageFrames, int num_frames, const int *PageAcces
     }
   }
   return 0; 
+}
+
+int PRAlgo_CUST(const PageFrame *PageFrames, int num_frames, const int *PageAccesses, int num_accesses, int current_access){
+  int least_time_of_arrival = PageFrames[0].time_of_arrival;
+  int index_with_least_arrival_time = 0;
+  int i;
+    
+  
+  for(i = 1; i < num_frames; i++){
+    if(PageFrames[i].time_of_arrival < least_time_of_arrival || PageFrames[i].time_of_arrival == PageFrames[i].time_of_access){
+      least_time_of_arrival = PageFrames[i].time_of_arrival;
+      index_with_least_arrival_time = i;
+    }
+  }
+  
+  return index_with_least_arrival_time;
 }
