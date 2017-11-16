@@ -15,3 +15,8 @@ The 'optimal' has the least page faults than 'first in fist out' and 'least rece
 but it is the slowest one of the three because it has to check the memory access for when the page 
 will be needed again, which could end up checking the entire memory access if its never 
 used again, making it very slow.
+
+For the custom one i wasn't sure how to imporve the methods of FIFO and LRU since the PageFrames
+were read-only in the algorithms, so I decided to go with an algorithm similar to second chance.  
+It would check the arrival time or return the pageframe that has the last access time equal to 
+the arrival time, which means that it was never referenced again. 
